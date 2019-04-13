@@ -16,3 +16,10 @@ export function getImageUrl(
 
     return `${IMAGE_URL_BASE}${width}${imagePath}`;
 }
+
+export function getFormattedTime(timeInMinute: number): string {
+    const hour = Math.floor(timeInMinute / 60);
+    const minute = timeInMinute % 60;
+
+    return `${hour}h ${minute}min`;
+}

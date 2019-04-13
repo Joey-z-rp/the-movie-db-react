@@ -48,7 +48,9 @@ class HomePage extends React.Component<IHomePageProps> {
     }
 
     componentDidMount() {
-        this.props.getPopularMovies();
+        if (this.props.movies && this.props.movies.length < 1) {
+            this.props.getPopularMovies();
+        }
     }
 
     render() {
@@ -60,6 +62,8 @@ class HomePage extends React.Component<IHomePageProps> {
             searchFor,
             totalResults,
         } = this.props;
+
+        const isShowingNoResults = !movies || (totalResults === 0 && searchFor);
 
         return (
             <HomePageWrapper ref={this.containerRef}>
@@ -78,7 +82,7 @@ class HomePage extends React.Component<IHomePageProps> {
                             voteAverage={movie.vote_average * 10}
                         />
                     ))}
-                    {!movies || (totalResults === 0 && searchFor) ? <NoResults /> : null}
+                    {isShowingNoResults ? <NoResults /> : null}
                 </MainSectionWrapper>
                 <LoadMore
                     bgcolor={BACKGROUND_COLOR}
