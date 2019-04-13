@@ -3,6 +3,7 @@ import * as express from 'express';
 import expressPromiseRouter from 'express-promise-router';
 import * as path from 'path';
 import { getPopularMovie } from './api/movie';
+import { getMovieSearchResult } from './api/search';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -32,6 +33,7 @@ router.use((req, res, next) => {
 
 // API
 router.get('/api/movie/popular', getPopularMovie);
+router.get('/api/search/movie', getMovieSearchResult);
 
 router.use('/public', express.static(path.join(__dirname, 'public')));
 router.use('*', express.static(path.join(__dirname, 'public')));

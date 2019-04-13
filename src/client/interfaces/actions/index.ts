@@ -11,3 +11,7 @@ export interface IGetMoviesResponse {
     total_pages: number;
     total_results: number;
 }
+
+export interface IProcessedMoviesResponse extends IGetMoviesResponse{
+    query: string;
+}

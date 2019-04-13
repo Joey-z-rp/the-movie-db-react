@@ -10,36 +10,38 @@ import {
     Vote,
 } from './style';
 
-const StyledCard: React.FunctionComponent<ICardProps> = (props) => {
-    const {
-        linkUrl,
-        posterUrl,
-        releaseDate,
-        title,
-        voteAverage,
-    } = props;
+class StyledCard extends React.PureComponent<ICardProps> {
+    render() {
+        const {
+            linkUrl,
+            posterUrl,
+            releaseDate,
+            title,
+            voteAverage,
+        } = this.props;
 
-    return (
-        <Card>
-            <Vote
-                bgcolor={getColor(voteAverage)}
-                circular
-            >
-                {voteAverage}%
-            </Vote>
-            <ImageWrapper>
-                <Link to={linkUrl}>
-                    <Image
-                        fluid
-                        src={posterUrl}
-                    />
-                </Link>
-            </ImageWrapper>
-            <Title>{title}</Title>
-            <ReleaseDate>{releaseDate}</ReleaseDate>
-        </Card>
-    );
-};
+        return (
+            <Card>
+                <Vote
+                    bgcolor={getColor(voteAverage)}
+                    circular
+                >
+                    {voteAverage}%
+                </Vote>
+                <ImageWrapper>
+                    <Link to={linkUrl}>
+                        <Image
+                            fluid
+                            src={posterUrl}
+                        />
+                    </Link>
+                </ImageWrapper>
+                <Title>{title}</Title>
+                <ReleaseDate>{releaseDate}</ReleaseDate>
+            </Card>
+        );
+    }
+}
 
 export default StyledCard;
 

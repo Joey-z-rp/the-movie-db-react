@@ -5,9 +5,11 @@ import { withRouter } from 'react-router-dom';
 import { getMovies, loadNextPage } from '../../actions/movies';
 import Card from '../../components/card';
 import Header from '../../components/homePage/header';
+import NoResults from '../../components/homePage/noResults';
 import noImageAvailable from '../../components/images/noImageAvailable.png';
 import Loader from '../../components/loader';
 import LoadMore from '../../components/loadMore';
+import ScrollToTop from '../../components/scrollToTop';
 import {
     IHomePageDispatchProps,
     IHomePageProps,
@@ -28,6 +30,7 @@ const mapStateToProps = (state: IState): IHomePageStateProps => ({
     isFetching: state.movies.isFetching,
     isLoadingMore: state.movies.isLoadingMore,
     movies: state.movies.movies,
+    searchFor: state.movies.searchFor,
     totalResults: state.movies.totalResults,
 });
 
@@ -54,15 +57,17 @@ class HomePage extends React.Component<IHomePageProps> {
             isLoadingMore,
             loadMore,
             movies,
+            searchFor,
             totalResults,
         } = this.props;
 
         return (
             <HomePageWrapper ref={this.containerRef}>
+                <ScrollToTop activeOn={250} />
                 <Header />
                 <MainSectionWrapper>
                     <Loader active={isFetching && !isLoadingMore} />
-                    <h1>Popular Movies</h1>
+                    <h1>{searchFor ? 'Search Result' : 'Popular Movies'}</h1>
                     {movies && movies.map(movie => (
                         <Card
                             key={movie.id}
@@ -73,11 +78,12 @@ class HomePage extends React.Component<IHomePageProps> {
                             voteAverage={movie.vote_average * 10}
                         />
                     ))}
+                    {!movies || (totalResults === 0 && searchFor) ? <NoResults /> : null}
                 </MainSectionWrapper>
                 <LoadMore
                     bgcolor={BACKGROUND_COLOR}
                     containerRef={this.containerRef}
-                    enableLoader={totalResults > movies.length}
+                    enableLoader={movies && totalResults > movies.length}
                     handleLoadMore={loadMore}
                     showLoader={isFetching && isLoadingMore}
                 />
