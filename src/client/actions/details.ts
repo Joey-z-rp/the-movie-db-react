@@ -16,13 +16,17 @@ export function errorReceivingMovieDetailsAction(error: Error) {
     };
 }
 
-export function getMovieDetailsAction() {
-    return { type: GET_MOVIE_DETAILS };
+export function getMovieDetailsAction(id: string) {
+    return {
+        id,
+        type: GET_MOVIE_DETAILS,
+    };
 }
 
 export function receiveMovieDetailsAction(result: IGetDetailsResponse) {
     return {
         backdropPath: result.backdrop_path,
+        id: result.id,
         overview: result.overview,
         posterPath: result.poster_path,
         releaseDate: result.release_date,
@@ -39,7 +43,7 @@ export function getMovieDetail(id: string) {
     return (dispatch, getState) => {
         const url = `/api/movie/${id}`;
 
-        dispatch(getMovieDetailsAction());
+        dispatch(getMovieDetailsAction(id));
 
         return fetch(url)
             .then((result: IGetDetailsResponse) => dispatch(receiveMovieDetailsAction(result)))

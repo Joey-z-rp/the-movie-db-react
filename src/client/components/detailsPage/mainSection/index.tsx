@@ -47,7 +47,7 @@ const MainSection: React.FunctionComponent<IMainSectionProps> = (props) => {
             </Info>
             <OveriewWrapper>
                 <h2>Overview</h2>
-                <p>{overview}</p>
+                <p>{overview || 'No Overview Available'}</p>
             </OveriewWrapper>
         </MainSectionWrapper>
     );
