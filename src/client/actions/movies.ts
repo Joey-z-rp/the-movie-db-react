@@ -7,12 +7,20 @@ import fetch from '../../common/utils/fetch';
 
 // action types
 
+export const ERROR_RECEIVING_MOVIES = 'ERROR_RECEIVING_MOVIES';
 export const GET_MOVIES = 'GET_MOVIES';
 export const HANDLE_INPUT_CHANGE = 'HANDLE_INPUT_CHANGE';
 export const LOAD_MORE = 'LOAD_MORE';
 export const RECEIVE_MOVIES = 'RECEIVE_MOVIES';
 
 // action creators
+
+export function errorReceivingMoviesAction(error: Error) {
+    return {
+        error,
+        type: ERROR_RECEIVING_MOVIES,
+    };
+}
 
 export function getMoviesAction(): IAction {
     return { type: GET_MOVIES };
@@ -56,9 +64,7 @@ export function getMovies(pageNumber: number = 1) {
                     query: input,
                 }))
             ))
-            .catch((err) => {
-                // TODO: handle error
-            });
+            .catch(err => dispatch(errorReceivingMoviesAction(err)));
     };
 }
 

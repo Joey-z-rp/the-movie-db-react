@@ -3,6 +3,7 @@ import { IMainSectionProps } from '../components/detailsPage/mainSection';
 
 export interface IDetailsStateProps extends IMainSectionProps {
     backdropPath: string;
+    error: Error | null;
     isFetching: boolean;
 }
 

@@ -1,5 +1,6 @@
 export interface IDetailsState {
     backdropPath: string;
+    error: Error | null;
     isFetching: boolean;
     overview: string;
     posterPath: string;
@@ -27,6 +28,7 @@ export interface IMovie {
 }
 
 export interface IMoviesState {
+    error: Error | null;
     input: string;
     isFetching: boolean;
     isLoadingMore: boolean;

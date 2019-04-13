@@ -17,7 +17,9 @@ export function getImageUrl(
     return `${IMAGE_URL_BASE}${width}${imagePath}`;
 }
 
-export function getFormattedTime(timeInMinute: number): string {
+export function getFormattedTime(timeInMinute: number | null): string {
+    if (!timeInMinute) return 'No Runtime Available';
+
     const hour = Math.floor(timeInMinute / 60);
     const minute = timeInMinute % 60;
 

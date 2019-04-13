@@ -1,4 +1,5 @@
 import {
+    ERROR_RECEIVING_MOVIE_DETAILS,
     GET_MOVIE_DETAILS,
     RECEIVE_MOVIE_DETAILS,
 } from '../actions/details';
@@ -7,6 +8,7 @@ import { IDetailsState } from '../interfaces/store';
 
 const initialState = {
     backdropPath: '',
+    error: null,
     isFetching: false,
     overview: '',
     posterPath: '',
@@ -22,9 +24,17 @@ export default function reducer(
 ): IDetailsState {
     switch (action.type) {
 
+        case ERROR_RECEIVING_MOVIE_DETAILS:
+            return {
+                ...state,
+                error: action.error,
+                isFetching: false,
+            };
+
         case GET_MOVIE_DETAILS:
             return {
                 ...initialState,
+                error: null,
                 isFetching: true,
             };
 
@@ -32,6 +42,7 @@ export default function reducer(
             return {
                 ...state,
                 backdropPath: action.backdropPath,
+                error: null,
                 isFetching: false,
                 overview: action.overview,
                 posterPath: action.posterPath,

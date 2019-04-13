@@ -1,4 +1,5 @@
 import {
+    ERROR_RECEIVING_MOVIES,
     GET_MOVIES,
     HANDLE_INPUT_CHANGE,
     LOAD_MORE,
@@ -8,6 +9,7 @@ import { IAction } from '../interfaces/actions';
 import { IMoviesState } from '../interfaces/store';
 
 const initialState = {
+    error: null,
     input: '',
     isFetching: false,
     isLoadingMore: false,
@@ -24,9 +26,20 @@ export default function reducer(
 ): IMoviesState {
     switch (action.type) {
 
+        case ERROR_RECEIVING_MOVIES:
+            return {
+                ...state,
+                error: action.error,
+                isFetching: false,
+                isLoadingMore: false,
+                movies: [],
+                searchFor: '',
+            };
+
         case GET_MOVIES:
             return {
                 ...state,
+                error: null,
                 isFetching: true,
                 movies: state.input !== state.searchFor ? [] : state.movies,
                 searchFor: state.input,
@@ -48,6 +61,7 @@ export default function reducer(
             return {
                 ...state,
                 movies,
+                error: null,
                 isFetching: false,
                 isLoadingMore: false,
                 page: action.page,
