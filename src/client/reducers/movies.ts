@@ -1,5 +1,6 @@
 import {
     GET_MOVIES,
+    LOAD_MORE,
     RECEIVE_MOVIES,
 } from '../actions/movies';
 import { IAction } from '../interfaces/actions';
@@ -7,6 +8,7 @@ import { IMoviesState } from '../interfaces/store';
 
 const initialState = {
     isFetching: false,
+    isLoadingMore: false,
     movies: [],
     page: 0,
     totalPages: 0,
@@ -23,14 +25,21 @@ export default function reducer(
             return {
                 ...state,
                 isFetching: true,
-                movies: [],
             };
 
+        case LOAD_MORE:
+            return { ...state, isLoadingMore: true };
+
         case RECEIVE_MOVIES:
+            const movies = action.page > 1
+                ? state.movies.concat(action.movies)
+                : action.movies;
+
             return {
                 ...state,
+                movies,
                 isFetching: false,
-                movies: action.movies,
+                isLoadingMore: false,
                 page: action.page,
                 totalPages: action.totalPages,
                 totalResults: action.totalResults,

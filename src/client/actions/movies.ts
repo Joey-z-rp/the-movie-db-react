@@ -7,12 +7,17 @@ import fetch from '../../common/utils/fetch';
 // action types
 
 export const GET_MOVIES = 'GET_MOVIES';
+export const LOAD_MORE = 'LOAD_MORE';
 export const RECEIVE_MOVIES = 'RECEIVE_MOVIES';
 
 // action creators
 
 export function getMoviesAction(): IAction {
     return { type: GET_MOVIES };
+}
+
+export function loadMoreAction() {
+    return { type: LOAD_MORE };
 }
 
 export function receiveMoviesAction(response: IGetMoviesResponse): IAction {
@@ -42,5 +47,14 @@ export function getMovies(pageNumber: number = 1) {
             .catch((err) => {
                 // TODO: handle error
             });
+    };
+}
+
+export function loadNextPage() {
+    return (dispatch, getState) => {
+        dispatch(loadMoreAction());
+        const nextPage = getState().movies.page + 1;
+
+        return getMovies(nextPage)(dispatch, getState);
     };
 }
