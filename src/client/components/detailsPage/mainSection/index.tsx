@@ -1,5 +1,6 @@
 import { getYear } from 'date-fns';
 import * as React from 'react';
+import { memo } from 'react';
 import { Image } from 'semantic-ui-react';
 import noImageAvailable from '../../images/noImageAvailable.png';
 import {
@@ -47,10 +48,10 @@ const MainSection: React.FunctionComponent<IMainSectionProps> = (props) => {
             </Info>
             <OveriewWrapper>
                 <h2>Overview</h2>
-                <p>{overview}</p>
+                <p>{overview || 'No Overview Available'}</p>
             </OveriewWrapper>
         </MainSectionWrapper>
     );
 };
 
-export default MainSection;
+export default memo(MainSection);

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { memo } from 'react';
 import { NoResultsWrapper } from './style';
 
 const NoResults: React.FunctionComponent = () => (
@@ -7,4 +8,4 @@ const NoResults: React.FunctionComponent = () => (
     </NoResultsWrapper>
 );
 
-export default NoResults;
+export default memo(NoResults);

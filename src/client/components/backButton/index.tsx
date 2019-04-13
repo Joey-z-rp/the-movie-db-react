@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { memo } from 'react';
 import { Icon } from 'semantic-ui-react';
 import { BackButtonWrapper } from './style';
 
@@ -13,4 +14,4 @@ const BackButton: React.FunctionComponent = () => (
     </BackButtonWrapper>
 );
 
-export default BackButton;
+export default memo(BackButton);

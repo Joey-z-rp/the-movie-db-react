@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { memo } from 'react';
 import { Message } from 'semantic-ui-react';
 import { ErrorMessageWrapper } from './style';
 
@@ -15,4 +16,4 @@ const ErrorMessage: React.FunctionComponent = () => (
     </ErrorMessageWrapper>
 );
 
-export default ErrorMessage;
+export default memo(ErrorMessage);

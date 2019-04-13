@@ -9,6 +9,7 @@ import { IDetailsState } from '../interfaces/store';
 const initialState = {
     backdropPath: '',
     error: null,
+    id: '',
     isFetching: false,
     overview: '',
     posterPath: '',
@@ -35,10 +36,13 @@ export default function reducer(
             return {
                 ...initialState,
                 error: null,
+                id: action.id,
                 isFetching: true,
             };
 
         case RECEIVE_MOVIE_DETAILS:
+            if (parseInt(state.id) !== action.id) return state;
+
             return {
                 ...state,
                 backdropPath: action.backdropPath,

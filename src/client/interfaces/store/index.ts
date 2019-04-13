@@ -1,6 +1,7 @@
 export interface IDetailsState {
     backdropPath: string;
     error: Error | null;
+    id: string;
     isFetching: boolean;
     overview: string;
     posterPath: string;
