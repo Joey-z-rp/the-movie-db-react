@@ -1,16 +1,12 @@
-export interface IState {
-    movies: IMoviesState;
-}
-
-export interface IMoviesState {
-    input: string;
+export interface IDetailsState {
+    backdropPath: string;
     isFetching: boolean;
-    isLoadingMore: boolean;
-    movies: IMovie[];
-    page: number;
-    searchFor: string;
-    totalPages: number;
-    totalResults: number;
+    overview: string;
+    posterPath: string;
+    releaseDate: string;
+    runtime: number;
+    title: string;
+    voteAverage: number;
 }
 
 export interface IMovie {
@@ -28,4 +24,20 @@ export interface IMovie {
     video: boolean;
     vote_average: number;
     vote_count: number;
+}
+
+export interface IMoviesState {
+    input: string;
+    isFetching: boolean;
+    isLoadingMore: boolean;
+    movies: IMovie[];
+    page: number;
+    searchFor: string;
+    totalPages: number;
+    totalResults: number;
+}
+
+export interface IState {
+    details: IDetailsState;
+    movies: IMoviesState;
 }

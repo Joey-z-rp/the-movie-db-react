@@ -48,7 +48,9 @@ class HomePage extends React.Component<IHomePageProps> {
     }
 
     componentDidMount() {
-        this.props.getPopularMovies();
+        if (this.props.movies && this.props.movies.length < 1) {
+            this.props.getPopularMovies();
+        }
     }
 
     render() {
