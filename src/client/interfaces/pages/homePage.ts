@@ -4,6 +4,7 @@ export interface IHomePageStateProps {
     isFetching: boolean;
     isLoadingMore: boolean;
     movies: IMovie[];
+    searchFor: string;
     totalResults: number;
 }
 

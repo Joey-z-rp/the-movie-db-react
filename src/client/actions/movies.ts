@@ -1,12 +1,14 @@
 import {
     IAction,
     IGetMoviesResponse,
+    IProcessedMoviesResponse,
 } from '../interfaces/actions';
 import fetch from '../../common/utils/fetch';
 
 // action types
 
 export const GET_MOVIES = 'GET_MOVIES';
+export const HANDLE_INPUT_CHANGE = 'HANDLE_INPUT_CHANGE';
 export const LOAD_MORE = 'LOAD_MORE';
 export const RECEIVE_MOVIES = 'RECEIVE_MOVIES';
 
@@ -16,14 +18,19 @@ export function getMoviesAction(): IAction {
     return { type: GET_MOVIES };
 }
 
+export function handleInputChangeAction(input: string) {
+    return { input, type: HANDLE_INPUT_CHANGE };
+}
+
 export function loadMoreAction() {
     return { type: LOAD_MORE };
 }
 
-export function receiveMoviesAction(response: IGetMoviesResponse): IAction {
+export function receiveMoviesAction(response: IProcessedMoviesResponse): IAction {
     return {
         movies: response.results,
         page: response.page,
+        query: response.query,
         totalPages: response.total_pages,
         totalResults: response.total_results,
         type: RECEIVE_MOVIES,
@@ -34,15 +41,20 @@ export function receiveMoviesAction(response: IGetMoviesResponse): IAction {
 
 export function getMovies(pageNumber: number = 1) {
     return (dispatch, getState) => {
-        const path = '/movie/popular';
-        const queryParameter = `?page=${pageNumber}`;
+        const input = getState().movies.input;
+        const path = input ? '/search/movie' : '/movie/popular';
+        const query = input ? `&query=${encodeURI(input)}` : '';
+        const queryParameter = `?page=${pageNumber}${query}`;
         const url = `/api${path}${queryParameter}`;
 
         dispatch(getMoviesAction());
 
         return fetch(url)
             .then((response: IGetMoviesResponse) => (
-                dispatch(receiveMoviesAction(response))
+                dispatch(receiveMoviesAction({
+                    ...response,
+                    query: input,
+                }))
             ))
             .catch((err) => {
                 // TODO: handle error

@@ -3,10 +3,12 @@ export interface IState {
 }
 
 export interface IMoviesState {
+    input: string;
     isFetching: boolean;
     isLoadingMore: boolean;
     movies: IMovie[];
     page: number;
+    searchFor: string;
     totalPages: number;
     totalResults: number;
 }
