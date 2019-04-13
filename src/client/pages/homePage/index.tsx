@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { getMovies, loadNextPage } from '../../actions/movies';
 import Card from '../../components/card';
+import ErrorMessage from '../../components/errorMessage';
 import Header from '../../components/homePage/header';
 import NoResults from '../../components/homePage/noResults';
 import noImageAvailable from '../../components/images/noImageAvailable.png';
@@ -27,6 +28,7 @@ import {
 } from './style';
 
 const mapStateToProps = (state: IState): IHomePageStateProps => ({
+    error: state.movies.error,
     isFetching: state.movies.isFetching,
     isLoadingMore: state.movies.isLoadingMore,
     movies: state.movies.movies,
@@ -55,6 +57,7 @@ class HomePage extends React.Component<IHomePageProps> {
 
     render() {
         const {
+            error,
             isFetching,
             isLoadingMore,
             loadMore,
@@ -83,6 +86,7 @@ class HomePage extends React.Component<IHomePageProps> {
                         />
                     ))}
                     {isShowingNoResults ? <NoResults /> : null}
+                    {error ? <ErrorMessage /> : null}
                 </MainSectionWrapper>
                 <LoadMore
                     bgcolor={BACKGROUND_COLOR}

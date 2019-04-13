@@ -7,11 +7,13 @@ import {
 
 import Details from './pages/details';
 import Homepage from './pages/homePage';
+import PageNotFound from './pages/pageNotFound';
 
 const App = () => (
     <Switch>
         <Route component={Homepage} exact path="/" />
         <Route component={Details} exact path="/movie/:id" />
+        <Route component={PageNotFound} />
     </Switch>
 );
 

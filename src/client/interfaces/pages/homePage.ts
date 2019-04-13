@@ -1,6 +1,7 @@
 import { IMovie } from '../store';
 
 export interface IHomePageStateProps {
+    error: Error | null;
     isFetching: boolean;
     isLoadingMore: boolean;
     movies: IMovie[];

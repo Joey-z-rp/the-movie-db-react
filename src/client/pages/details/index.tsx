@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
 import { getMovieDetail } from '../../actions/details';
 import BackButton from '../../components/backButton';
+import ErrorMessage from '../../components/errorMessage';
 import MainSection from '../../components/detailsPage/mainSection';
 import noImageAvailable from '../../components/images/noImageAvailable.png';
 import Loader from '../../components/loader';
@@ -17,6 +18,7 @@ import { DetailPageWrapper, Header } from './style';
 
 const mapStateToProps = (state: IState): IDetailsStateProps => ({
     backdropPath: state.details.backdropPath,
+    error: state.details.error,
     isFetching: state.details.isFetching,
     overview: state.details.overview,
     posterPath: state.details.posterPath,
@@ -38,6 +40,7 @@ class DetailsPage extends React.Component<IDetailsProps> {
     render() {
         const {
             backdropPath,
+            error,
             isFetching,
             overview,
             posterPath,
@@ -66,7 +69,7 @@ class DetailsPage extends React.Component<IDetailsProps> {
                     fallbackImage={noImageAvailable}
                 />
                 <Container>
-                    {mainSection}
+                    {error ? <ErrorMessage /> : mainSection}
                 </Container>
             </DetailPageWrapper>
         );

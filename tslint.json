@@ -48,6 +48,12 @@
       "check-type-operator",
       "check-preblock"
     ],
+    "no-duplicate-imports": [
+      true,
+      {
+        "allow-namespace-imports": true
+      }
+    ],
     "no-increment-decrement": false,
     "no-conditional-assignment": true,
     "class-name": true,

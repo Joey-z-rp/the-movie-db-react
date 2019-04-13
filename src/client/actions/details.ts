@@ -3,10 +3,18 @@ import fetch from '../../common/utils/fetch';
 
 // action types
 
+export const ERROR_RECEIVING_MOVIE_DETAILS = 'ERROR_RECEIVING_MOVIE_DETAILS';
 export const GET_MOVIE_DETAILS = 'GET_MOVIE_DETAILS';
 export const RECEIVE_MOVIE_DETAILS = 'RECEIVE_MOVIE_DETAILS';
 
 // action creators
+
+export function errorReceivingMovieDetailsAction(error: Error) {
+    return {
+        error,
+        type: ERROR_RECEIVING_MOVIE_DETAILS,
+    };
+}
 
 export function getMovieDetailsAction() {
     return { type: GET_MOVIE_DETAILS };
@@ -35,8 +43,6 @@ export function getMovieDetail(id: string) {
 
         return fetch(url)
             .then((result: IGetDetailsResponse) => dispatch(receiveMovieDetailsAction(result)))
-            .catch((err) => {
-                // TODO: handle error
-            });
+            .catch(err => dispatch(errorReceivingMovieDetailsAction(err)));
     };
 }
