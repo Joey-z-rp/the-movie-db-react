@@ -61,6 +61,8 @@ class HomePage extends React.Component<IHomePageProps> {
             totalResults,
         } = this.props;
 
+        const isShowingNoResults = !movies || (totalResults === 0 && searchFor);
+
         return (
             <HomePageWrapper ref={this.containerRef}>
                 <ScrollToTop activeOn={250} />
@@ -78,7 +80,7 @@ class HomePage extends React.Component<IHomePageProps> {
                             voteAverage={movie.vote_average * 10}
                         />
                     ))}
-                    {!movies || (totalResults === 0 && searchFor) ? <NoResults /> : null}
+                    {isShowingNoResults ? <NoResults /> : null}
                 </MainSectionWrapper>
                 <LoadMore
                     bgcolor={BACKGROUND_COLOR}

@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { NoResultWrapper } from './style';
+import { NoResultsWrapper } from './style';
 
-const NoResult: React.FunctionComponent = () => (
-    <NoResultWrapper>
+const NoResults: React.FunctionComponent = () => (
+    <NoResultsWrapper>
         No results found.
-    </NoResultWrapper>
+    </NoResultsWrapper>
 );
 
-export default NoResult;
+export default NoResults;
