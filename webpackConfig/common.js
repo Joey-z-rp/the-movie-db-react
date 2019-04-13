@@ -1,6 +1,6 @@
+const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const path = require('path');
 
 const server = {
     node: {
@@ -29,7 +29,7 @@ const server = {
                     },
                 ],
                 include: [
-                    path.resolve(__dirname, '../src/server'),
+                    path.resolve(__dirname, '../src'),
                 ],
             },
         ],
@@ -62,7 +62,7 @@ const client = {
                     },
                 ],
                 include: [
-                    path.resolve(__dirname, '../src/client'),
+                    path.resolve(__dirname, '../src'),
                 ],
             },
             {
