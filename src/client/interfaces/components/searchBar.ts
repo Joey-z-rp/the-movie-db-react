@@ -1,8 +1,9 @@
+import { IAction } from '../actions';
 
 export interface ISearchBarStateProps {}
 
 export interface ISearchBarDispatchProps {
-    handleInputChange: (input) => void;
+    handleInputChange: (input) => IAction;
     search: () => Promise<any>;
 }
 

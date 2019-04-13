@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { memo } from 'react';
 import { Message } from 'semantic-ui-react';
 
 const PageNotFound: React.FunctionComponent = () => (
@@ -8,4 +9,4 @@ const PageNotFound: React.FunctionComponent = () => (
     </Message>
 );
 
-export default PageNotFound;
+export default memo(PageNotFound);

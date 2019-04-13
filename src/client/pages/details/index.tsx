@@ -32,7 +32,7 @@ const mapDispatchToProps = (dispatch): IDetailsDispatchProps => ({
     load: id => dispatch(getMovieDetail(id)),
 });
 
-class DetailsPage extends React.Component<IDetailsProps> {
+class DetailsPage extends React.PureComponent<IDetailsProps> {
     componentDidMount() {
         this.props.load(this.props.match.params.id);
     }

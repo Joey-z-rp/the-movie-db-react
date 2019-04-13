@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { memo } from 'react';
 import { Image } from 'semantic-ui-react';
 import SearchBar from '../searchBar';
 import logo from './images/logo.svg';
@@ -11,4 +12,4 @@ const Header: React.FunctionComponent = () => (
     </HeaderWrapper>
 );
 
-export default Header;
+export default memo(Header);
