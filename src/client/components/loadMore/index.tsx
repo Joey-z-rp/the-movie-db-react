@@ -14,7 +14,7 @@ export default class LoadMore extends React.PureComponent<ILoadMoreProps> {
 
     handleScroll = (): void => {
         const scrollAtBottom = window.innerHeight + window.scrollY
-            >= this.props.containerRef.current!.offsetHeight;
+            >= this.props.containerRef.current!.offsetHeight - 5;
         if (scrollAtBottom && this.props.enableLoader && !this.props.showLoader) {
             this.props.handleLoadMore();
         }

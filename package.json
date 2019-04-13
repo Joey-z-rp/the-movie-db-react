@@ -23,7 +23,8 @@
     "build": "webpack --config ./webpackConfig/production.js",
     "lint": "tslint -c tslint.json -p .",
     "test": "npm run lint && jest",
-    "test-jest": "jest"
+    "test-jest": "jest",
+    "heroku-postbuild": "npm run build"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
