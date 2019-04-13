@@ -1,11 +1,13 @@
 import * as React from 'react';
+import { RefObject } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { getMovies } from '../../actions/movies';
+import { getMovies, loadNextPage } from '../../actions/movies';
 import Card from '../../components/card';
 import Header from '../../components/homePage/header';
 import noImageAvailable from '../../components/images/noImageAvailable.png';
 import Loader from '../../components/loader';
+import LoadMore from '../../components/loadMore';
 import {
     IHomePageDispatchProps,
     IHomePageProps,
@@ -16,6 +18,7 @@ import {
     getFormattedReleaseDate,
     getImageUrl,
 } from '../../utils/movieInfoHelper';
+import { BACKGROUND_COLOR } from '../../../common/constants';
 import {
     HomePageWrapper,
     MainSectionWrapper,
@@ -23,14 +26,24 @@ import {
 
 const mapStateToProps = (state: IState): IHomePageStateProps => ({
     isFetching: state.movies.isFetching,
+    isLoadingMore: state.movies.isLoadingMore,
     movies: state.movies.movies,
+    totalResults: state.movies.totalResults,
 });
 
 const mapDispatchToProps = (dispatch): IHomePageDispatchProps => ({
     getPopularMovies: () => dispatch(getMovies()),
+    loadMore: () => dispatch(loadNextPage()),
 });
 
 class HomePage extends React.Component<IHomePageProps> {
+    private containerRef: RefObject<HTMLDivElement>;
+
+    constructor(props) {
+        super(props);
+        this.containerRef = React.createRef();
+    }
+
     componentDidMount() {
         this.props.getPopularMovies();
     }
@@ -38,14 +51,17 @@ class HomePage extends React.Component<IHomePageProps> {
     render() {
         const {
             isFetching,
+            isLoadingMore,
+            loadMore,
             movies,
+            totalResults,
         } = this.props;
 
         return (
-            <HomePageWrapper>
+            <HomePageWrapper ref={this.containerRef}>
                 <Header />
                 <MainSectionWrapper>
-                    <Loader active={isFetching} />
+                    <Loader active={isFetching && !isLoadingMore} />
                     <h1>Popular Movies</h1>
                     {movies && movies.map(movie => (
                         <Card
@@ -58,6 +74,13 @@ class HomePage extends React.Component<IHomePageProps> {
                         />
                     ))}
                 </MainSectionWrapper>
+                <LoadMore
+                    bgcolor={BACKGROUND_COLOR}
+                    containerRef={this.containerRef}
+                    enableLoader={totalResults > movies.length}
+                    handleLoadMore={loadMore}
+                    showLoader={isFetching && isLoadingMore}
+                />
             </HomePageWrapper>
         );
     }

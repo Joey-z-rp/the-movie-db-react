@@ -4,6 +4,7 @@ export interface IState {
 
 export interface IMoviesState {
     isFetching: boolean;
+    isLoadingMore: boolean;
     movies: IMovie[];
     page: number;
     totalPages: number;
