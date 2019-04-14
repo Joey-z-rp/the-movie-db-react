@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 import { getImageUrl } from '../../utils/movieInfoHelper';
-import { BACKGROUND_COLOR } from '../../../common/constants';
+import {
+    BREAK_POINT_LARGE,
+    BREAK_POINT_MEDIUM,
+    BREAK_POINT_SMALL,
+} from '../../../common/constants/breakPoints';
+import { BACKGROUND_COLOR } from '../../../common/constants/theme';
 
 export const DetailPageWrapper = styled.div`
     background-color: ${BACKGROUND_COLOR};
@@ -14,15 +19,15 @@ export const Header = styled.div`
     );
     background-size: cover;
     background-position: center;
-    @media (max-width: 1024px) {
+    @media (max-width: ${BREAK_POINT_LARGE}) {
         background-image: url(
             "${props => getImageUrl(props.backdropPath, 780, props.fallbackImage)}"
         );
     }
-    @media (max-width: 768px) {
+    @media (max-width: ${BREAK_POINT_MEDIUM}) {
         height: 300px;
     }
-    @media (max-width: 500px) {
+    @media (max-width: ${BREAK_POINT_SMALL}) {
         height: 230px;
     }
 `;

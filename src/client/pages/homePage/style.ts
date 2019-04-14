@@ -1,5 +1,9 @@
 import styled from 'styled-components';
-import { BACKGROUND_COLOR, HEADER_COLOR } from '../../../common/constants';
+import {
+    BREAK_POINT_LARGE,
+    BREAK_POINT_SMALL,
+} from '../../../common/constants/breakPoints';
+import { BACKGROUND_COLOR, HEADER_COLOR } from '../../../common/constants/theme';
 
 export const HomePageWrapper = styled.div`
     display: flex;
@@ -15,10 +19,10 @@ export const MainSectionWrapper = styled.div`
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
-    @media (max-width: 1024px) {
+    @media (max-width: ${BREAK_POINT_LARGE}) {
         padding: 5vh 7vw 2vh;
     }
-    @media (max-width: 480px) {
+    @media (max-width: ${BREAK_POINT_SMALL}) {
         padding: 5vh 2vw 2vh;
     }
     h1 {

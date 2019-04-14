@@ -1,4 +1,4 @@
-import { API_BASE } from '../../common/constants';
+import { API_BASE } from '../../common/constants/urlBase';
 import fetch from '../../common/utils/fetch';
 
 export const getMovieDetails = async (req, res) => {

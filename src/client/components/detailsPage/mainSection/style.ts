@@ -1,5 +1,10 @@
 import styled from 'styled-components';
-import { CONTENT_COLOR, HEADER_COLOR } from '../../../../common/constants';
+import {
+    BREAK_POINT_MEDIUM,
+    BREAK_POINT_MEDIUM_LARGE,
+    BREAK_POINT_SMALL,
+} from '../../../../common/constants/breakPoints';
+import { CONTENT_COLOR, HEADER_COLOR } from '../../../../common/constants/theme';
 
 export const MainSectionWrapper = styled.div`
     position: relative;
@@ -7,7 +12,7 @@ export const MainSectionWrapper = styled.div`
     flex-wrap: wrap;
     padding: 2rem 3rem;
     color: ${CONTENT_COLOR};
-    @media (max-width: 500px) {
+    @media (max-width: ${BREAK_POINT_SMALL}) {
         padding: 2rem 1rem;
     }
 `;
@@ -38,17 +43,17 @@ export const Info = styled.div`
         font-size: 2.3em;
         margin-bottom: 1rem;
     }
-    @media (max-width: 991px) {
+    @media (max-width: ${BREAK_POINT_MEDIUM_LARGE}) {
         width: 66.6%;
     }
-    @media (max-width: 768px) {
+    @media (max-width: ${BREAK_POINT_MEDIUM}) {
         width: 60%;
         font-size: 1rem;
         h1 {
             font-size: 1.8em;
         }
     }
-    @media (max-width: 500px) {
+    @media (max-width: ${BREAK_POINT_SMALL}) {
         font-size: 0.8rem;
         h1 {
             font-size: 1.5em;
@@ -56,7 +61,7 @@ export const Info = styled.div`
     }
 `;
 
-export const OveriewWrapper = styled.div`
+export const OverviewWrapper = styled.div`
     width: 33.33%;
     h2 {
         color: ${HEADER_COLOR};
@@ -65,7 +70,7 @@ export const OveriewWrapper = styled.div`
     p {
         font-size: 1.5em;
     }
-    @media (max-width: 991px) {
+    @media (max-width: ${BREAK_POINT_MEDIUM_LARGE}) {
         margin-top: 1rem;
         padding-top: 1rem;
         border-top: 1px solid #0F303D;
@@ -74,6 +79,6 @@ export const OveriewWrapper = styled.div`
     }
 `;
 
-export const Seperator = styled.span`
+export const Separator = styled.span`
     padding: 0 0.5rem;
 `;

@@ -3,6 +3,11 @@ import { Link } from 'react-router-dom';
 import { Image } from 'semantic-ui-react';
 import { ICardProps } from '../../interfaces/components/card';
 import {
+    VOTE_COLOR_HIGH,
+    VOTE_COLOR_LOW,
+    VOTE_COLOR_MEDIUM,
+} from '../../../common/constants/theme';
+import {
     Card,
     ImageWrapper,
     ReleaseDate,
@@ -46,7 +51,7 @@ class StyledCard extends React.PureComponent<ICardProps> {
 export default StyledCard;
 
 function getColor(percentage: number): string {
-    if (percentage > 79) return '#01D277';
-    if (percentage > 49) return '#4902A3';
-    return '#D1225B';
+    if (percentage > 79) return VOTE_COLOR_HIGH;
+    if (percentage > 49) return VOTE_COLOR_MEDIUM;
+    return VOTE_COLOR_LOW;
 }

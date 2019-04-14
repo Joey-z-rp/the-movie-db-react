@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-import { IMAGE_URL_BASE } from '../../common/constants';
+import { IMAGE_URL_BASE } from '../../common/constants/urlBase';
 
 export function getFormattedReleaseDate(date: string | null): string {
     if (!date) return 'No Date Available';

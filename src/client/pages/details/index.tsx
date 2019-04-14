@@ -13,19 +13,19 @@ import {
     IDetailsProps,
     IDetailsStateProps,
 } from '../../interfaces/pages/details';
-import { IState } from '../../interfaces/store';
+import { IDetailsState } from '../../interfaces/store';
 import { DetailPageWrapper, Header } from './style';
 
-const mapStateToProps = (state: IState): IDetailsStateProps => ({
-    backdropPath: state.details.backdropPath,
-    error: state.details.error,
-    isFetching: state.details.isFetching,
-    overview: state.details.overview,
-    posterPath: state.details.posterPath,
-    releaseDate: state.details.releaseDate,
-    runtime: state.details.runtime,
-    title: state.details.title,
-    voteAverage: state.details.voteAverage,
+const mapStateToProps = ({ details }: { details: IDetailsState}): IDetailsStateProps => ({
+    backdropPath: details.backdropPath,
+    error: details.error,
+    isFetching: details.isFetching,
+    overview: details.overview,
+    posterPath: details.posterPath,
+    releaseDate: details.releaseDate,
+    runtime: details.runtime,
+    title: details.title,
+    voteAverage: details.voteAverage,
 });
 
 const mapDispatchToProps = (dispatch): IDetailsDispatchProps => ({

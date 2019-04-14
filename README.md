@@ -27,7 +27,7 @@ This project is using `yarn` for dependency management.  Make sure `yarn` is ins
 
 Install project dependencies.
 
-- `yarn start`
+- `API_KEY={your_api_key} yarn start`
 
 Run the app in development mode on `http://localhost:3000/`.
 
