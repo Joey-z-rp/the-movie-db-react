@@ -16,24 +16,24 @@ import {
     IHomePageProps,
     IHomePageStateProps,
 } from '../../interfaces/pages/homePage';
-import { IState } from '../../interfaces/store';
+import { IMoviesState } from '../../interfaces/store';
 import {
     getFormattedReleaseDate,
     getImageUrl,
 } from '../../utils/movieInfoHelper';
-import { BACKGROUND_COLOR } from '../../../common/constants';
+import { BACKGROUND_COLOR } from '../../../common/constants/theme';
 import {
     HomePageWrapper,
     MainSectionWrapper,
 } from './style';
 
-const mapStateToProps = (state: IState): IHomePageStateProps => ({
-    error: state.movies.error,
-    isFetching: state.movies.isFetching,
-    isLoadingMore: state.movies.isLoadingMore,
-    movies: state.movies.movies,
-    searchFor: state.movies.searchFor,
-    totalResults: state.movies.totalResults,
+const mapStateToProps = ({ movies }: { movies: IMoviesState}): IHomePageStateProps => ({
+    error: movies.error,
+    isFetching: movies.isFetching,
+    isLoadingMore: movies.isLoadingMore,
+    movies: movies.movies,
+    searchFor: movies.searchFor,
+    totalResults: movies.totalResults,
 });
 
 const mapDispatchToProps = (dispatch): IHomePageDispatchProps => ({

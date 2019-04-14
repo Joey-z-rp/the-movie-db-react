@@ -41,7 +41,7 @@ export default function reducer(
             };
 
         case RECEIVE_MOVIE_DETAILS:
-            if (parseInt(state.id) !== action.id) return state;
+            if (parseInt(state.id, 10) !== action.id) return state;
 
             return {
                 ...state,

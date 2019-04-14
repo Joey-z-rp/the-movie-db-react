@@ -1,6 +1,7 @@
 import { Search } from 'semantic-ui-react';
 import styled from 'styled-components';
-import { GREEN_COLOR } from '../../../../common/constants';
+import { BREAK_POINT_SMALL } from '../../../../common/constants/breakPoints';
+import { GREEN_COLOR } from '../../../../common/constants/theme';
 
 export const StyledSearchBar = styled(Search)`
     && {
@@ -24,7 +25,7 @@ export const StyledSearchBar = styled(Search)`
             &::-ms-input-placeholder {
                 color: ${GREEN_COLOR}!important;
             }
-            @media (max-width: 495px) {
+            @media (max-width: ${BREAK_POINT_SMALL}) {
                 width: 90vw;
             }
         }

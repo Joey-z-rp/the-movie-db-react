@@ -11,8 +11,8 @@ import {
     ImageWrapper,
     Info,
     MainSectionWrapper,
-    OveriewWrapper,
-    Seperator,
+    OverviewWrapper,
+    Separator,
 } from './style';
 
 const MainSection: React.FunctionComponent<IMainSectionProps> = (props) => {
@@ -39,17 +39,17 @@ const MainSection: React.FunctionComponent<IMainSectionProps> = (props) => {
                 <h1>{title}</h1>
                 <p>
                     {getYear(new Date(releaseDate))}
-                    <Seperator>·</Seperator>
+                    <Separator>·</Separator>
                     {`${voteAverage * 10}% User Score`}
                 </p>
                 <p>
                     {getFormattedTime(runtime)}
                 </p>
             </Info>
-            <OveriewWrapper>
+            <OverviewWrapper>
                 <h2>Overview</h2>
                 <p>{overview || 'No Overview Available'}</p>
-            </OveriewWrapper>
+            </OverviewWrapper>
         </MainSectionWrapper>
     );
 };

@@ -27,7 +27,7 @@ describe('movie information helper functions', () => {
 
         it('should return valid image url when called with valid parameters', () => {
             expect(getImageUrl('/imageUrl', 300, 'fallback image url'))
-                .toBe('http://image.tmdb.org/t/p/w300/imageUrl');
+                .toBe('https://image.tmdb.org/t/p/w300/imageUrl');
         });
     });
 

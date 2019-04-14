@@ -1,13 +1,14 @@
 import { Label } from 'semantic-ui-react';
 import styled from 'styled-components';
-import { CONTENT_COLOR, HEADER_COLOR } from '../../../common/constants';
+import { BREAK_POINT_LARGE } from '../../../common/constants/breakPoints';
+import { CONTENT_COLOR, HEADER_COLOR } from '../../../common/constants/theme';
 
 export const Card = styled.div`
     width: calc(25% - 2em);
     position: relative;
     background-color: transparent;
     margin: 1em;
-    @media (max-width: 1024px) {
+    @media (max-width: ${BREAK_POINT_LARGE}) {
         width: calc(33.333% - 2em);
     }
     @media (max-width: 600px) {
